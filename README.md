@@ -1,13 +1,17 @@
 akka-sbt-study
 ==============
 
-setup project environment:
+setup project environment
+--------------------------
+
 * Install sbt: http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html
-* in project home folder, start sbt and run following command
-eclipse with-source=true
+* in project home folder, start `sbt` and run `eclipse with-source=true` command
+
 * open eclipse, import all projects
 
-Run front-end cluster app:
+Run front-end cluster app
+--------------------------
+
 * Seed node 1:
 sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project frontend" run
 * Sees node 2 (option):
@@ -15,12 +19,16 @@ sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 -Dhttp.port=80
 * normal node:
 sbt -Djava.library.path=./sigar -Dconfig=cluster -Dhttp.port=8083 "project frontend" run
 
-Test url from browser:
-http://localhost:[port]/ping
-http://localhost:[port]/hello/foobar
-http://localhost:[port]/stop (shutdown actor system)
+Test url from browser
+---------------------
 
-Run back-end cluster app:
+* http://localhost:8081/ping
+* http://localhost:8081/hello/foobar
+* http://localhost:8081/stop (shutdown actor system)
+
+Run back-end cluster app
+-------------------------
+
 * Seed node 1(optional):
 sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project backend" run
 * Sees node 2 (optional):
@@ -28,3 +36,9 @@ sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 "project backe
 * normal node:
 sbt -Djava.library.path=./sigar -Dconfig=cluster "project backend" run
 
+Start Nginx reserve proxy
+--------------------------
+
+`nginx -c ./nginx/nginx.conf`
+
+`nginx -s stop` to stop proxy
