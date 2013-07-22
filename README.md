@@ -13,11 +13,11 @@ Run front-end cluster app
 --------------------------
 
 * Seed node 1:
-sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project frontend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project frontend" run`
 * Sees node 2 (option):
-sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 -Dhttp.port=8082 "project frontend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 -Dhttp.port=8082 "project frontend" run`
 * normal node:
-sbt -Djava.library.path=./sigar -Dconfig=cluster -Dhttp.port=8083 "project frontend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster -Dhttp.port=8083 "project frontend" run`
 
 Test url from browser
 ---------------------
@@ -30,11 +30,11 @@ Run back-end cluster app
 -------------------------
 
 * Seed node 1(optional):
-sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project backend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2551 "project backend" run`
 * Sees node 2 (optional):
-sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 "project backend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster -Dakka.port=2552 "project backend" run`
 * normal node:
-sbt -Djava.library.path=./sigar -Dconfig=cluster "project backend" run
+`sbt -Djava.library.path=./sigar -Dconfig=cluster "project backend" run`
 
 Start Nginx reserve proxy
 --------------------------
