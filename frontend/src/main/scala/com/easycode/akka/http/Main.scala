@@ -5,12 +5,13 @@ import akka.io.IO
 import spray.can.Http
 import spray.can.server.ServerSettings
 import com.typesafe.config.ConfigFactory
+import akka.routing.FromConfig
 
 object Main extends App {
   var config = ConfigFactory.load().getConfig(
     Option(System.getProperty("config")) match {
       case Some(config) ⇒ config
-      case _            ⇒ "standalone"
+      case _            ⇒ "cluster"
     });
 
   config = Option(System.getProperty("akka.port")) match {
@@ -26,6 +27,8 @@ object Main extends App {
   }
 
   implicit val system = ActorSystem("Computation", config)
+
+  val workerRouter = system.actorOf(Props.empty.withRouter(FromConfig), name = "workerRouter")
 
   // the handler actor replies to incoming HttpRequests
   val handler = system.actorOf(Props[FrontEndActor], name = "front-end")

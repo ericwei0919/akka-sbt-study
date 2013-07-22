@@ -1,4 +1,4 @@
-package com.easycode.akka.http
+package com.easycode.akka.worker
 
 import akka.actor.{ ActorSystem, Props }
 import com.typesafe.config.ConfigFactory
@@ -7,7 +7,7 @@ object Main extends App {
   var config = ConfigFactory.load().getConfig(
     Option(System.getProperty("config")) match {
       case Some(config) ⇒ config
-      case _            ⇒ "standalone"
+      case _            ⇒ "cluster"
     });
 
   config = Option(System.getProperty("akka.port")) match {
@@ -19,5 +19,5 @@ object Main extends App {
 
   implicit val system = ActorSystem("Computation", config)
 
-  // val handler = system.actorOf(Props[FrontEndActor], name = "front-end")
+  system.actorOf(Props[UpperCaseActor], name = "worker-actor")
 }

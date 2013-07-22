@@ -1,10 +1,10 @@
 package com.easycode.akka.http
 
 import scala.concurrent.duration._
-
 import akka.actor.{ Actor, Props }
 import spray.routing._
 import spray.util._
+import akka.routing.ConsistentHashingRouter.ConsistentHashableEnvelope
 
 class FrontEndActor extends Actor with FrontEndService {
   def actorRefFactory = context
@@ -28,6 +28,11 @@ trait FrontEndService extends HttpService {
         get {
           println("ping")
           complete("PONG")
+        }
+      } ~
+      path("work" / Segment) { msg ⇒
+        get { ctx ⇒
+          actorRefFactory.actorOf(WorkerMessageProcessActor.props(ctx, msg))
         }
       } ~
       path("stop") {
