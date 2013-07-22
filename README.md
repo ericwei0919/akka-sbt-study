@@ -6,8 +6,7 @@ setup project environment
 
 * Install sbt: http://www.scala-sbt.org/release/docs/Getting-Started/Setup.html
 * in project home folder, start `sbt` and run `eclipse with-source=true` command
-
-* open eclipse, import all projects
+* open eclipse(with scala ide plugin), import all projects
 
 Run front-end cluster app
 --------------------------
