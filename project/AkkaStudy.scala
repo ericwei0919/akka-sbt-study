@@ -63,8 +63,8 @@ object AkkaStudy extends Build {
     base = file("frontend"),
     settings = defaultSettings ++ Seq(
       // javaOptions in run ++= Seq(
-        // "-Djava.library.path=../sigar",
-        // "-Xms128m", "-Xmx512m"),
+      //   "-Djava.library.path=../sigar"),
+      // "-Xms128m", "-Xmx512m"),
       // Keys.fork in run := true,
       libraryDependencies ++= Dependencies.frontend))
 
@@ -73,8 +73,8 @@ object AkkaStudy extends Build {
     base = file("backend"),
     settings = defaultSettings ++ Seq(
       // javaOptions in run ++= Seq(
-        // "-Djava.library.path=../sigar",
-        // "-Xms128m", "-Xmx512m"),
+      //   "-Djava.library.path=../sigar"),
+      // "-Xms128m", "-Xmx512m"),
       // Keys.fork in run := true,
       libraryDependencies ++= Dependencies.backend))
 }
@@ -93,7 +93,7 @@ object Dependencies {
     val sprayCan = "io.spray" % "spray-can" % "1.2-20130719"
     val sprayRouting = "io.spray" % "spray-routing" % "1.2-20130719"
 
-    val sigar = "org.fusesource" % "sigar" % "1.6.4" exclude("log4j", "log4j") // ApacheV2
+    val sigar = "org.fusesource" % "sigar" % "1.6.4" exclude ("log4j", "log4j") // ApacheV2
 
     val slf4jApi = "org.slf4j" % "slf4j-api" % "1.7.2" // MIT
     val log4jslf4j = "org.slf4j" % "log4j-over-slf4j" % "1.7.2" // MIT

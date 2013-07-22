@@ -1,9 +1,6 @@
 package com.easycode.akka.http
 
 import akka.actor.{ ActorSystem, Props }
-import akka.io.IO
-import spray.can.Http
-import spray.can.server.ServerSettings
 import com.typesafe.config.ConfigFactory
 
 object Main extends App {
@@ -20,15 +17,7 @@ object Main extends App {
     case _ ⇒ config
   }
 
-  val httpPort = Option(System.getProperty("http.port")) match {
-    case Some(port) ⇒ port.toInt
-    case _          ⇒ 8081
-  }
-
   implicit val system = ActorSystem("Computation", config)
 
-  // the handler actor replies to incoming HttpRequests
-  val handler = system.actorOf(Props[FrontEndActor], name = "front-end")
-
-  IO(Http) ! Http.Bind(handler, interface = "localhost", port = httpPort, settings = Some(ServerSettings(system)))
+  // val handler = system.actorOf(Props[FrontEndActor], name = "front-end")
 }
